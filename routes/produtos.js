@@ -36,4 +36,26 @@ router.get("/", auth, async (req, res) => {
   }
 });
 
+// Buscar produto por ID (protegido)
+router.get("/:id", auth, async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const result = await pool.query(
+      "SELECT * FROM produtos WHERE id = $1",
+      [id]
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ erro: "Produto não encontrado" });
+    }
+
+    res.json(result.rows[0]);
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ erro: "Erro ao buscar produto" });
+  }
+});
+
 module.exports = router;
