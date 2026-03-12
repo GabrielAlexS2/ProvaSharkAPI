@@ -4,7 +4,7 @@ const pool = require("../db");
 
 const router = express.Router();
 
-// 🔐 Função de validação de senha
+// Função de validação de senha
 function validarSenha(senha) {
   const minimoOito = senha.length >= 8;
   const temNumero = /[0-9]/.test(senha);
@@ -13,7 +13,7 @@ function validarSenha(senha) {
   return minimoOito && temNumero && temMaiuscula;
 }
 
-// 🚀 Rota de cadastro
+// Rota de cadastro
 router.post("/register", async (req, res) => {
   const { nome, email, senha } = req.body;
 
@@ -57,7 +57,7 @@ router.post("/register", async (req, res) => {
 
 const jwt = require("jsonwebtoken");
 
-// 🚀 Rota de login
+// Rota de login
 router.post("/login", async (req, res) => {
   const { email, senha } = req.body;
 

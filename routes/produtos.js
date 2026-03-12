@@ -36,7 +36,7 @@ router.get("/", auth, async (req, res) => {
   }
 });
 
-// Buscar produto por ID (protegido)
+// Buscar produto por ID
 router.get("/:id", auth, async (req, res) => {
   try {
     const { id } = req.params;
